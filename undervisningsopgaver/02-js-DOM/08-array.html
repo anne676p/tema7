@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        body {
+            color: burlywood;
+        }
+
+        #display {
+            width: 20vw;
+            height: 20vw;
+            border: 1px solid silver;
+            margin: 7vw;
+            padding: 1vw;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="display"> </div>
+</body>
+
+<script>
+    let playlist = ["sang 1", "sang 2", "sang 3", "sang 4", "sang 5", "sang 6", "sang 7", "sang 8", "sang 9", "sang 10"];
+    playlist.forEach(sang => {
+        document.querySelector("#display").innerHTML += `${sang} <br>`;
+    })
+
+</script>
+
+</html>
