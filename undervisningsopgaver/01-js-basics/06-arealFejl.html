@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <p> Længde: </p>
     <input type="text" id="length">
 
@@ -18,18 +17,22 @@
 
     <button>Beregn areal og kig i konsolen</button>
 
-
     <script>
         document.querySelector("button").addEventListener("click", button_clicked);
 
         function button_clicked() {
             let length = document.querySelector("#length").value;
             let width = document.querySelector("#width").value;
-            let areal = length * width;
+            let resultat = length * width;
 
-            let resultat = `Arealet er ${areal} kvadratmeter`;
 
-            console.log(resultat);
+            console.log("resultat", resultat);
+        }
+
+        if (length isNaN(length) == true) || (width isNaN(length) == true) {
+            resultat = "Den er gal";
+        } else {
+            resultat = length * width;
         }
 
     </script>

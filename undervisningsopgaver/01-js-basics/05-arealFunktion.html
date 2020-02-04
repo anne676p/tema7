@@ -23,11 +23,18 @@
         function button_clicked() {
             let length = document.querySelector("#length").value;
             let width = document.querySelector("#width").value;
-            let areal = length * width;
+            //let areal = length * width;
 
-            let resultat = `Arealet er ${areal} kvadratmeter`;
+
+            let resultat = `Arealet er ${areal(length, width)} kvadratmeter`;
 
             console.log(resultat);
+
+        }
+
+        function areal(l, w) {
+            return (l * w);
+
         }
 
     </script>
