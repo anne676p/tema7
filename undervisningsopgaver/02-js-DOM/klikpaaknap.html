@@ -50,19 +50,20 @@
             })
 
             document.querySelector("#slet").addEventListener("click", () => {
-                box.innerHTML = "´´"
+                box.style.transform = "scale(0)"
             })
 
             document.querySelector("#html").addEventListener("click", () => {
                 let box = document.querySelector("#box");
+                box.style.transform = "scale(1)";
                 box.innerHTML = "<h2> HEJ </h2> <p> Brødtekst </p>"
             })
 
             document.querySelector("#flyt").addEventListener("click", () => {
                 let box = document.querySelector("#box");
                 let bax = document.querySelector("#bax");
-                box.innerHTML = box.innerHTML;
-                bax.innerHTML = box.innerHTML
+                bax.innerHTML = box.innerHTML;
+                box.innerHTML = bax.innerHTML;
 
             })
 

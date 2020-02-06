@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background: red;
+            margin: 1em;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <div class="box" id="box3"></div>
+    <div class="box" id="box4"></div>
+
+</body>
+
+<script>
+    function start() {
+        let alleBox = document.querySelector(".box");
+
+        alleBox.forEach(alleBox => {
+            alleBox.addEventListener("click", skiftfarve);
+
+        })
+
+        function skiftfarve() {
+            this.style.backgroundColor = "black";
+        }
+
+    }
+
+</script>
+
+</html>
