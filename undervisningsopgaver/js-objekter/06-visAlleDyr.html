@@ -6,13 +6,20 @@
     <title></title>
 
     <style>
-        #alleDyr {
-            width: 20vw;
+        article {
+            border: 4px solid black;
             height: 20vw;
-            border: 4px solid silver;
+            width: 20vw;
             margin: 2vw;
             padding: 2vw;
             text-align: center;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 0 auto;
+            grid-gap: 1px;
         }
 
     </style>
@@ -28,6 +35,7 @@
             <p id="p2"> Levested: </p>
         </article>
     </template>
+    <main></main>
 </body>
 
 <script>
@@ -68,7 +76,7 @@
     document.addEventListener("DOMContentLoaded", start)
 
     function start() {
-        const listevisning = document.querySelector("#liste");
+        const listevisning = document.querySelector("main");
         const dyrTemplate = document.querySelector("template");
 
         dyr.forEach(dyr => {
