@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        article {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            margin: 0 auto;
+            grid-gap: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section id="liste"> </section>
+    <main> </main>
+    <template>
+        <article id=alleDyr>
+            <h3></h3>
+            <img src="" alt="">
+            <p id="p1"> Type: </p>
+            <p id="p2"> Levested: </p>
+        </article>
+    </template>
+
+</body>
+
+<script>
+    let dyr = [];
+
+    document.addEventListener("DOMContentLoaded", start)
+
+    function start() {
+        hentJson();
+    }
+
+    async function hentJson() {
+        const jsonData = await fetch("alleDyr.json");
+        dyr = await jsonData.json();
+        visDyr();
+    }
+
+    function visDyr() {
+
+        const listevisning = document.querySelector("main");
+        const dyrTemplate = document.querySelector("template");
+
+        dyr.forEach(dyr => {
+            let klon = dyrTemplate.cloneNode(true).content;
+            klon.querySelector("h3").textContent = dyr.navn;
+            klon.querySelector("img").src = dyr.billeder;
+            klon.querySelector("#p1").textContent += dyr.type;
+            klon.querySelector("#p2").textContent += dyr.levested;
+            listevisning.appendChild(klon);
+
+            //listevisning.innerHTML += `<p>${dyr.navn} ${dyr.type} ${dyr.levested} </p>`
+        });
+    }
+
+</script>
+
+</html>
