@@ -35,6 +35,7 @@
             <img src="" alt="">
             <p class="alder"> Alder: </p>
             <p class="religion"> Religion </p>
+            <p class="køn"> Køn: </p>
         </article>
     </template>
 
@@ -43,6 +44,7 @@
 <script>
     const endpoint = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
     let personer = [];
+    let filter = "k";
 
     document.addEventListener("DOMContentLoaded", start);
 
@@ -62,14 +64,17 @@
         const container = document.querySelector(".data-container");
         const template = document.querySelector("template");
         personer.feed.entry.forEach(person => {
-            let klon = template.cloneNode(true).content;
-            klon.querySelector("h2").textContent = person.gsx$navn.$t;
-            klon.querySelector("h2").textContent += "" + person.gsx$efternavn.$t;
-            klon.querySelector("img").src = person.gsx$billede.$t;
-            klon.querySelector("img").alt = person.gsx$navn.$t;
-            klon.querySelector(".alder").textContent += person.gsx$alder.$t;
-            klon.querySelector(".religion").textContent += person.gsx$religion.$t;
-            container.appendChild(klon);
+            if (person.gsx$sex.$t == filter) {
+                let klon = template.cloneNode(true).content;
+                klon.querySelector("h2").textContent = person.gsx$navn.$t;
+                klon.querySelector("h2").textContent += "" + person.gsx$efternavn.$t;
+                klon.querySelector("img").src = person.gsx$billede.$t;
+                klon.querySelector("img").alt = person.gsx$navn.$t;
+                klon.querySelector(".alder").textContent += person.gsx$alder.$t;
+                klon.querySelector(".køn").textContent += person.gsx$sex.$t;
+                klon.querySelector(".religion").textContent += person.gsx$religion.$t;
+                container.appendChild(klon);
+            }
         })
     }
 
