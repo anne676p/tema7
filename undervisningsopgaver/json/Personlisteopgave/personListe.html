@@ -6,6 +6,10 @@
     <title></title>
 
     <style>
+        body {
+            text-align: center;
+        }
+
         img {
             width: 100%;
         }
@@ -23,11 +27,34 @@
             grid-gap: 20px;
         }
 
+        nav {
+            text-align: center;
+            height: 3vw;
+        }
+
+        button {
+            width: 10vw;
+            height: 2vw;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .valgt {
+            color: red;
+        }
+
     </style>
 
 </head>
 
 <body>
+    <h1>Alle</h1>
+    <nav>
+        <button class="filter" data-køn="alle"> Alle </button>
+        <button class="filter" data-køn="m"> Mænd </button>
+        <button class="filter" data-køn="k"> Kvinder </button>
+        <button class="filter" data-køn="andet"> Andet </button>
+    </nav>
     <section class="data-container"> </section>
     <template>
         <article class="person">
@@ -50,6 +77,8 @@
 
     function start() {
         loadData();
+        buttons();
+
     }
 
     async function loadData() {
@@ -63,8 +92,11 @@
     function visPersoner() {
         const container = document.querySelector(".data-container");
         const template = document.querySelector("template");
+
+        container.innerHTML = "";
+
         personer.feed.entry.forEach(person => {
-            if (person.gsx$sex.$t == filter) {
+            if (filter == "alle" || filter == person.gsx$sex.$t) {
                 let klon = template.cloneNode(true).content;
                 klon.querySelector("h2").textContent = person.gsx$navn.$t;
                 klon.querySelector("h2").textContent += "" + person.gsx$efternavn.$t;
@@ -76,6 +108,18 @@
                 container.appendChild(klon);
             }
         })
+    }
+
+    function buttons() {
+        document.querySelectorAll(".filter").forEach(elm => {
+            elm.addEventListener("click", filtrering);
+        })
+    }
+
+    function filtrering() {
+        filter = this.dataset.køn;
+        document.querySelector("h1").textContent = this.textContent;
+        visPersoner();
     }
 
 </script>
